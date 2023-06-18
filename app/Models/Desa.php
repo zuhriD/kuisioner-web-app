@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Desa extends Model
 {
     use HasFactory;
+    protected $fillable = ['kecamatan_id', 'name'];
+
+    //make relationship with kecamatan
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class);
+    }
 }

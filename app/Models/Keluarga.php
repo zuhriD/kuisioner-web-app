@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Keluarga extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nama_kepala_keluarga',
+        'no_urut_bangunan',
+        'no_urut_keluarga_verifikasi',
+        'status',
+        'jml_anggota_keluarga',
+        'landmark',
+        'no_kk',
+        'kode_kk',
+    ];
+
+    
+
 }
