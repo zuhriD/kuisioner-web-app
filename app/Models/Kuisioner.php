@@ -16,7 +16,11 @@ class Kuisioner extends Model
         'keluarga_id',
         'pml_id',
         'ppl_id',
-        'status_pendataan'];
+        'status_pendataan',
+        'tanggal_pendataan',
+        'tanggal_pemeriksaan',
+        'no_hp',
+    ];
 
     //make relationship with provinsi
     public function provinsi()

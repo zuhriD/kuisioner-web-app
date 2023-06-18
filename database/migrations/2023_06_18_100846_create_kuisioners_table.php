@@ -24,6 +24,9 @@ class CreateKuisionersTable extends Migration
             $table->foreignId('ppl_id')->constrained('ppls')->onDelete('restrict');
             $table->foreignId('pml_id')->constrained('pmls')->onDelete('restrict');
             $table->enum('status_pendataan', ['1', '2', '3', '4', '5']);
+            $table->date('tanggal_pendataan');
+            $table->date('tanggal_pemeriksaan');
+            $table->string('no_hp');
             $table->timestamps();
         });
     }
