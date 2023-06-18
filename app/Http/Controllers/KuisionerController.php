@@ -15,6 +15,8 @@ class KuisionerController extends Controller
     public function index()
     {
         //
+        $kusioner = Kuisioner::all();
+        return view('homes.kuisioner.index', compact('kuisioner'));
     }
 
     /**

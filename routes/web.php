@@ -19,14 +19,39 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('auths.login');
 });
 
-Route::middleware('auth')->group(function () {
 
-    Route::get('/', [App\Http\Controllers\ProjectController::class, 'index'])->name('kuisioner.index');
-    // Route::post('/projects', [App\Http\Controllers\ProjectController::class, 'store'])->name('projects.store');
-    // Route::get('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'show'])->name('projects.show');
-    // Route::get('/projects/{id}/edit', [App\Http\Controllers\ProjectController::class, 'edit'])->name('projects.edit');
-    // Route::put('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'update'])->name('projects.update');
-    // Route::delete('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'destroy'])->name('projects.destroy');
 
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('/home', [App\Http\Controllers\DashboardController::class, 'index'])->name('homeAdmin');
+
+    // User
+    Route::resource('users', App\Http\Controllers\UserController::class);
+    // provinsi
+    Route::resource('provinsis', App\Http\Controllers\ProvinsiController::class);
+    // kabupaten
+    Route::resource('kabupatens', App\Http\Controllers\KabupatenController::class);
+    // kecamatan
+    Route::resource('kecamatans', App\Http\Controllers\KecamatanController::class);
+    // desa
+    Route::resource('desas', App\Http\Controllers\DesaController::class);
+    // sls  
+    Route::resource('sls', App\Http\Controllers\SlsController::class);
+    // keluarga
+    Route::resource('keluargas', App\Http\Controllers\KeluargaController::class);
+    // ppl  
+    Route::resource('ppl', App\Http\Controllers\PplController::class);
+    // pml
+    Route::resource('pml', App\Http\Controllers\PmlController::class);
+    // kuisioner
+    Route::resource('kuisioners', App\Http\Controllers\KuisionerController::class);
+
+
+    // Logout
+    Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('auths.logout');
+});
+
+Route::group(['middleware' => ['auth', 'user']], function () {
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('homeUser');
+    // Logout
     Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('auths.logout');
 });

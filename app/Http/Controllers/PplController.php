@@ -15,6 +15,8 @@ class PplController extends Controller
     public function index()
     {
         //
+        $ppl = Ppl::all();
+        return view('homes.ppl.index', compact('ppl'));
     }
 
     /**

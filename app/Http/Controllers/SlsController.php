@@ -15,6 +15,8 @@ class SlsController extends Controller
     public function index()
     {
         //
+        $sls = Sls::all();
+        return view('homes.sls.index', compact('sls'));
     }
 
     /**

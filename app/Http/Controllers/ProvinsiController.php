@@ -14,7 +14,8 @@ class ProvinsiController extends Controller
      */
     public function index()
     {
-        //
+        $provinsi = Provinsi::all();
+        return view('homes.provinsi.index', compact('provinsi'));
     }
 
     /**

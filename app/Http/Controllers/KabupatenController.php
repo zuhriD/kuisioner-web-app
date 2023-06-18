@@ -15,6 +15,8 @@ class KabupatenController extends Controller
     public function index()
     {
         //
+        $kabupaten = Kabupaten::all();
+        return view('homes.kabupaten.index', compact('kabupaten'));
     }
 
     /**

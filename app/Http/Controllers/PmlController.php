@@ -15,6 +15,8 @@ class PmlController extends Controller
     public function index()
     {
         //
+        $pml = Pml::all();
+        return view('homes.pml.index', compact('pml'));
     }
 
     /**

@@ -15,6 +15,8 @@ class DesaController extends Controller
     public function index()
     {
         //
+        $desa = Desa::all();
+        return view('homes.desa.index', compact('desa'));
     }
 
     /**

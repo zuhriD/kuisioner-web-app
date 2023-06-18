@@ -8,7 +8,7 @@
 <!-- /.login-logo -->
 <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="" class="h1"><b>Rapid Typing Test</b>Petugas Entri</a>
+      <a href="" class="h1"><b>Rapid Typing Test</b> Petugas Entri</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
@@ -27,7 +27,7 @@
       <form action="{{ route('auths.login') }}" method="post">
         @csrf
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Email" name="email">
+          <input type="text" class="form-control" placeholder="Username" name="username">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>

@@ -15,6 +15,8 @@ class KecamatanController extends Controller
     public function index()
     {
         //
+        $kecamatan = Kecamatan::all();
+        return view('homes.kecamatan.index', compact('kecamatan'));
     }
 
     /**

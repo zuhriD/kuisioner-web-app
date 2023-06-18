@@ -15,11 +15,14 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|string',
+            'username' => 'required|string',
             'password' => 'required|string',
         ]);
 
-        if(Auth::attempt($credentials)){
+        if(Auth::attempt($credentials) && Auth::user()->role_id == 1){
+            $request->session()->regenerate();
+            return redirect()->intended('/home');
+        }else if(Auth::attempt($credentials) && Auth::user()->role_id == 2){
             $request->session()->regenerate();
             return redirect()->intended('/');
         }
