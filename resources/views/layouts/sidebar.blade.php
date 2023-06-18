@@ -16,7 +16,7 @@
                with font-awesome or any other icon font library -->
         
           <li class="nav-item">
-            <a href="{{ route('homeAdmin') }}" class="nav-link {{ (request()->is('/home')) ? 'active' : '' }}">
+            <a href="{{ route('homeAdmin') }}" class="nav-link {{ (request()->is('home')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home

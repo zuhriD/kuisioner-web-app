@@ -37,6 +37,18 @@ class ProvinsiController extends Controller
     public function store(Request $request)
     {
         //
+        $validasiData = $request->validate([
+            'kode_provinsi' => 'required',
+            'name' => 'required',
+        ]);
+        if ($validasiData) {
+            $provinsi =  new Provinsi();
+            $provinsi->id = $request->kode_provinsi;
+            $provinsi->name = $request->name;
+            $provinsi->save();
+            return redirect()->route('provinsis.index')->with('success', "Data berhasil ditambahkan");
+        }
+        return redirect()->route('provinsis.index')->with('error', "Data gagal ditambahkan");
     }
 
     /**
@@ -48,6 +60,8 @@ class ProvinsiController extends Controller
     public function show(Provinsi $provinsi)
     {
         //
+        $provinsi = Provinsi::findOrFail($provinsi->id);
+        return response()->json($provinsi);
     }
 
     /**
@@ -71,6 +85,18 @@ class ProvinsiController extends Controller
     public function update(Request $request, Provinsi $provinsi)
     {
         //
+        $validasiData = $request->validate([
+            'kode_provinsi' => 'required',
+            'name' => 'required',
+        ]);
+
+        if ($validasiData) {
+            $provinsi = Provinsi::findOrFail($provinsi->id);
+            $provinsi->id = $request->kode_provinsi;
+            $provinsi->name = $request->name;
+            $provinsi->save();
+            return redirect()->route('provinsis.index')->with('success', "Data berhasil diubah");
+        }
     }
 
     /**
@@ -81,6 +107,8 @@ class ProvinsiController extends Controller
      */
     public function destroy(Provinsi $provinsi)
     {
-        //
+        // destroy
+        $provinsi->delete();
+        return redirect()->route('provinsis.index')->with('success', "Data berhasil dihapus");
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kabupaten;
+use App\Models\Provinsi;
 use Illuminate\Http\Request;
 
 class KabupatenController extends Controller
@@ -15,8 +16,9 @@ class KabupatenController extends Controller
     public function index()
     {
         //
-        $kabupaten = Kabupaten::all();
-        return view('homes.kabupaten.index', compact('kabupaten'));
+        $kabupaten = Kabupaten::with('provinsi')->get();
+        $provinsi = Provinsi::all();
+        return view('homes.kabupaten.index', compact('kabupaten', 'provinsi'));
     }
 
     /**
@@ -38,6 +40,20 @@ class KabupatenController extends Controller
     public function store(Request $request)
     {
         //
+        $validasiData = $request->validate([
+            'kode_kabupaten' => 'required',
+            'name' => 'required',
+            'provinsi_id' => 'required',
+        ]);
+        if ($validasiData) {
+            $kabupaten =  new Kabupaten();
+            $kabupaten->id = $request->kode_kabupaten;
+            $kabupaten->provinsi_id = $request->provinsi_id;
+            $kabupaten->name = $request->name;
+            $kabupaten->save();
+            return redirect()->route('kabupatens.index')->with('success', "Data berhasil ditambahkan");
+        }
+        return redirect()->route('kabupatens.index')->with('error', "Data gagal ditambahkan");
     }
 
     /**
@@ -49,6 +65,8 @@ class KabupatenController extends Controller
     public function show(Kabupaten $kabupaten)
     {
         //
+        $kabupaten = Kabupaten::findOrfail($kabupaten->id);
+        return response()->json($kabupaten);
     }
 
     /**
@@ -72,6 +90,20 @@ class KabupatenController extends Controller
     public function update(Request $request, Kabupaten $kabupaten)
     {
         //
+        $validasiData = $request->validate([
+            'kode_kabupaten' => 'required',
+            'name' => 'required',
+            'provinsi_id' => 'required',
+        ]);
+        if ($validasiData) {
+            $kabupaten =  Kabupaten::findOrfail($kabupaten->id);
+            $kabupaten->id = $request->kode_kabupaten;
+            $kabupaten->provinsi_id = $request->provinsi_id;
+            $kabupaten->name = $request->name;
+            $kabupaten->save();
+            return redirect()->route('kabupatens.index')->with('success', "Data berhasil diubah");
+        }
+        return redirect()->route('kabupatens.index')->with('error', "Data gagal diubah");
     }
 
     /**
@@ -82,6 +114,7 @@ class KabupatenController extends Controller
      */
     public function destroy(Kabupaten $kabupaten)
     {
-        //
+        $kabupaten->delete();
+        return redirect()->route('kabupatens.index')->with('success', "Data berhasil dihapus");
     }
 }
