@@ -15,7 +15,9 @@ class KuisionerController extends Controller
     public function index()
     {
         //
-        $kusioner = Kuisioner::all();
+        $kusioner = Kuisioner::with('provinsi', 'kabupaten', 'kecamatan',
+         'desa', 'keluarga', 'sls', 'keluarga', 'ppl', 'pml')->get();
+        dd($kusioner);
         return view('homes.kuisioner.index', compact('kuisioner'));
     }
 
