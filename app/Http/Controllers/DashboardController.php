@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -14,7 +15,8 @@ class DashboardController extends Controller
     public function index()
     {
         //
-        return view('homes.index');
+        $user = User::where('role_id', 2)->get();
+        return view('homes.index', compact('user'));
     }
 
     /**

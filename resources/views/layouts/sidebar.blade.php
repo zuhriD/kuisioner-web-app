@@ -17,9 +17,9 @@
         
           <li class="nav-item">
             <a href="{{ route('homeAdmin') }}" class="nav-link {{ (request()->is('home')) ? 'active' : '' }}">
-              <i class="nav-icon fas fa-home"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
-                Home
+                Users
               </p>
             </a>
           </li>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -35,6 +36,23 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $validasiData = $request->validate([
+            'kode_user' => 'required',
+            'name' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+        if ($validasiData) {
+            $user =  new User();
+            $user->id = $request->kode_user;
+            $user->name = $request->name;
+            $user->username = $request->username;
+            $user->password = bcrypt($request->password);
+            $user->role_id = 2;
+            $user->save();
+            return redirect()->route('users.index')->with('success', "Data berhasil ditambahkan");
+        }
+        return redirect()->route('users.index')->with('error', "Data gagal ditambahkan");
     }
 
     /**
@@ -46,6 +64,8 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        $user = User::findOrFail($id); // Query ke database untuk mengambil data sesuai id
+        return response()->json($user); 
     }
 
     /**
@@ -69,6 +89,24 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validasiData = $request->validate([
+            'kode_user' => 'required',
+            'name' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
+        if ($validasiData) {
+            $user = User::findOrFail($id);
+            $user->id = $request->kode_user;
+            $user->name = $request->name;
+            $user->username = $request->username;
+            $user->password = bcrypt($request->password);
+            $user->role_id = 2;
+            $user->save();
+            return redirect()->route('homeAdmin')->with('success', "Data berhasil diubah");
+        }
+        return redirect()->route('homeAdmin')->with('error', "Data gagal diubah");
     }
 
     /**
@@ -80,5 +118,8 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $user  = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('homeAdmin')->with('success', "Data berhasil dihapus");
     }
 }
