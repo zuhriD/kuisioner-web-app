@@ -38,6 +38,29 @@ class KeluargaController extends Controller
     public function store(Request $request)
     {
         //
+        $validasiData = $request->validate([
+            'nama_kepala_keluarga' => 'required',
+            'no_urut_bangunan' => 'required',
+            'no_verifikasi' => 'required',
+            'status' => 'required',
+            'jml_anggota_keluarga' => 'required',
+            'id_landmark' => 'required',
+            'no_kk' => 'required',
+            'kode_kk' => 'required',
+        ]);
+        if ($validasiData) {
+            $keluarga =  new Keluarga();
+            $keluarga->nama_kepala_keluarga = $request->nama_kepala_keluarga;
+            $keluarga->no_urut_bangunan = $request->no_urut_bangunan;
+            $keluarga->no_urut_keluarga_verifikasi = $request->no_verifikasi;
+            $keluarga->status = $request->status;
+            $keluarga->jml_anggota_keluarga = $request->jml_anggota_keluarga;
+            $keluarga->landmark = $request->id_landmark;
+            $keluarga->no_kk = $request->no_kk;
+            $keluarga->kode_kk = $request->kode_kk;
+            $keluarga->save();
+            return redirect()->route('keluargas.index')->with('success', "Data berhasil ditambahkan");
+        }
     }
 
     /**
@@ -49,6 +72,8 @@ class KeluargaController extends Controller
     public function show(Keluarga $keluarga)
     {
         //
+        $keluarga = Keluarga::findOrfail($keluarga->id);
+        return response()->json($keluarga);
     }
 
     /**
@@ -72,6 +97,30 @@ class KeluargaController extends Controller
     public function update(Request $request, Keluarga $keluarga)
     {
         //
+        $validasiData = $request->validate([
+            'nama_kepala_keluarga' => 'required',
+            'no_urut_bangunan' => 'required',
+            'no_verifikasi' => 'required',
+            'status' => 'required',
+            'jml_anggota_keluarga' => 'required',
+            'id_landmark' => 'required',
+            'no_kk' => 'required',
+            'kode_kk' => 'required',
+        ]);
+        if ($validasiData) {
+            $keluarga =  Keluarga::findOrfail($keluarga->id);
+            $keluarga->nama_kepala_keluarga = $request->nama_kepala_keluarga;
+            $keluarga->no_urut_bangunan = $request->no_urut_bangunan;
+            $keluarga->no_urut_keluarga_verifikasi = $request->no_verifikasi;
+            $keluarga->status = $request->status;
+            $keluarga->jml_anggota_keluarga = $request->jml_anggota_keluarga;
+            $keluarga->landmark = $request->id_landmark;
+            $keluarga->no_kk = $request->no_kk;
+            $keluarga->kode_kk = $request->kode_kk;
+            $keluarga->save();
+            return redirect()->route('keluargas.index')->with('success', "Data berhasil diubah");
+        }
+        return redirect()->route('keluargas.index')->with('error', "Data gagal diubah");
     }
 
     /**
@@ -83,5 +132,7 @@ class KeluargaController extends Controller
     public function destroy(Keluarga $keluarga)
     {
         //
+        $keluarga->delete();
+        return redirect()->route('keluargas.index')->with('success', "Data berhasil dihapus");
     }
 }
