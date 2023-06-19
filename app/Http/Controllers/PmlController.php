@@ -38,6 +38,18 @@ class PmlController extends Controller
     public function store(Request $request)
     {
         //
+        $validasiData = $request->validate([
+            'kode_pml' => 'required',
+            'name' => 'required',
+        ]);
+        if ($validasiData) {
+            $pml =  new Pml();
+            $pml->id = $request->kode_pml;
+            $pml->name = $request->name;
+            $pml->save();
+            return redirect()->route('pml.index')->with('success', "Data berhasil ditambahkan");
+        }
+        return redirect()->route('pml.index')->with('error', "Data gagal ditambahkan");
     }
 
     /**
@@ -49,6 +61,8 @@ class PmlController extends Controller
     public function show(Pml $pml)
     {
         //
+        $pml = Pml::findOrFail($pml->id);
+        return response()->json($pml);
     }
 
     /**
@@ -72,6 +86,18 @@ class PmlController extends Controller
     public function update(Request $request, Pml $pml)
     {
         //
+        $validasiData = $request->validate([
+            'kode_pml' => 'required',
+            'name' => 'required',
+        ]);
+        if ($validasiData) {
+            $pml =  Pml::findOrFail($pml->id);
+            $pml->id = $request->kode_pml;
+            $pml->name = $request->name;
+            $pml->save();
+            return redirect()->route('pml.index')->with('success', "Data berhasil diubah");
+        }
+        return redirect()->route('pml.index')->with('error', "Data gagal diubah");
     }
 
     /**
@@ -83,5 +109,7 @@ class PmlController extends Controller
     public function destroy(Pml $pml)
     {
         //
+        $pml->delete();
+        return redirect()->route('pml.index')->with('success', "Data berhasil dihapus");
     }
 }

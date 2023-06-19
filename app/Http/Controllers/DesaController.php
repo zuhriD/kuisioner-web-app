@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Desa;
+use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 
 class DesaController extends Controller
@@ -15,8 +16,9 @@ class DesaController extends Controller
     public function index()
     {
         //
-        $desa = Desa::all();
-        return view('homes.desa.index', compact('desa'));
+        $desa = Desa::with('kecamatan')->get();
+        $kecamatan = Kecamatan::all();
+        return view('homes.desa.index', compact('desa', 'kecamatan'));
     }
 
     /**
@@ -38,6 +40,20 @@ class DesaController extends Controller
     public function store(Request $request)
     {
         //
+        $validateData = [
+            'kecamatan_id' => 'required',
+            'kode_desa' => 'required',
+            'name' => 'required',
+        ];
+        if ($validateData) {
+            $desa = new Desa();
+            $desa->id = $request->kode_desa;
+            $desa->kecamatan_id = $request->kecamatan_id;
+            $desa->name = $request->name;
+            $desa->save();
+            return redirect()->route('desas.index')->with('success', "Data berhasil ditambahkan");
+        }
+        return redirect()->route('desas.index')->with('error', "Data gagal ditambahkan");
     }
 
     /**
@@ -49,6 +65,8 @@ class DesaController extends Controller
     public function show(Desa $desa)
     {
         //
+        $desa = Desa::findOrfail($desa->id);
+        return response()->json($desa);
     }
 
     /**
@@ -72,6 +90,20 @@ class DesaController extends Controller
     public function update(Request $request, Desa $desa)
     {
         //
+        $validateData = [
+            'kecamatan_id' => 'required',
+            'kode_desa' => 'required',
+            'name' => 'required',
+        ];
+        if ($validateData) {
+            $desa = Desa::findOrfail($desa->id);
+            $desa->id = $request->kode_desa;
+            $desa->kecamatan_id = $request->kecamatan_id;
+            $desa->name = $request->name;
+            $desa->save();
+            return redirect()->route('desas.index')->with('success', "Data berhasil diubah");
+        }
+        return redirect()->route('desas.index')->with('error', "Data gagal diubah");
     }
 
     /**
@@ -83,5 +115,7 @@ class DesaController extends Controller
     public function destroy(Desa $desa)
     {
         //
+        $desa->delete();
+        return redirect()->route('desas.index')->with('success', "Data berhasil dihapus");
     }
 }

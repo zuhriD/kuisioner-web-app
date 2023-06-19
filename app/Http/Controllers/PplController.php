@@ -38,6 +38,18 @@ class PplController extends Controller
     public function store(Request $request)
     {
         //
+        $validasiData = $request->validate([
+            'kode_ppl' => 'required',
+            'name' => 'required',
+        ]);
+        if ($validasiData) {
+            $ppl =  new Ppl();
+            $ppl->id = $request->kode_ppl;
+            $ppl->name = $request->name;
+            $ppl->save();
+            return redirect()->route('ppl.index')->with('success', "Data berhasil ditambahkan");
+        }
+        return redirect()->route('ppl.index')->with('error', "Data gagal ditambahkan");
     }
 
     /**
@@ -49,6 +61,8 @@ class PplController extends Controller
     public function show(Ppl $ppl)
     {
         //
+        $ppl = Ppl::findOrFail($ppl->id);
+        return response()->json($ppl);
     }
 
     /**
@@ -72,6 +86,18 @@ class PplController extends Controller
     public function update(Request $request, Ppl $ppl)
     {
         //
+        $validasiData = $request->validate([
+            'kode_ppl' => 'required',
+            'name' => 'required',
+        ]);
+        if ($validasiData) {
+            $ppl =  Ppl::findOrFail($ppl->id);
+            $ppl->id = $request->kode_ppl;
+            $ppl->name = $request->name;
+            $ppl->save();
+            return redirect()->route('ppl.index')->with('success', "Data berhasil diubah");
+        }
+        return redirect()->route('ppl.index')->with('error', "Data gagal diubah");
     }
 
     /**
@@ -83,5 +109,7 @@ class PplController extends Controller
     public function destroy(Ppl $ppl)
     {
         //
+        $ppl->delete();
+        return redirect()->route('ppl.index')->with('success', "Data berhasil dihapus");
     }
 }
