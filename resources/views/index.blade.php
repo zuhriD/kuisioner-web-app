@@ -54,9 +54,11 @@ input.form-control {
 </head>
 <body>
   <!-- Tombol Logout -->
-	<a href="{{ route('auths.logout') }}" class="btn btn-danger logout-button">Logout</a>
+	<form id="logout-form" action="{{ route('auths.logout') }}" method="POST" id="myForm">
+    @csrf
+    <button type="submit" class="btn btn-danger logout-button">Logout</button>
+</form>
 	<div class="container">
-    {{-- make title here --}}
     <div class="row">
       <div class="col-md-12">
         <h4 class="text-center">Typing Test </h4>
@@ -79,8 +81,9 @@ input.form-control {
 					<tr>
 						<td>Provinsi</td>
             <td>
-              <form action="" method="post">
+              <form action="{{ route('result.store') }}" method="post">
               @csrf
+              <input type="hidden" id="durationInput" name="durationInput">
               <div class="row">
                 <div class="col-md-10">
                   <p id="provinsi"></p>
@@ -250,7 +253,7 @@ input.form-control {
                 </div>
                 <div class="form-group">
                   <label for="" class="mr-2">Kode</label>
-                  <input type="text" class="form-control" id="kode_ppl" onkeyup="isi_ppl()">
+                  <input type="text" class="form-control" name="kode_ppl" id="kode_ppl" onkeyup="isi_ppl()">
                 </div>
               </div>
             </td>
@@ -290,7 +293,7 @@ input.form-control {
                 </div>
                 <div class="form-group">
                   <label for="" class="mr-2">Kode</label>
-                  <input type="text" class="form-control" id="kode_pml" onkeyup="isi_pml()">
+                  <input type="text" class="form-control" name="kode_pml" id="kode_pml" onkeyup="isi_pml()">
                 </div>
               </div>
             </td>

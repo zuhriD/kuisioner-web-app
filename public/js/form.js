@@ -91,3 +91,29 @@ function isi_pml(){
         }
     });
 }
+
+var startTime = new Date();
+var durationInput = document.getElementById('durationInput');
+
+function updateDuration() {
+    var currentTime = new Date();
+    var duration = currentTime - startTime;
+    var seconds = Math.floor(duration / 1000);
+    var minutes = Math.floor(seconds / 60);
+    var hours = Math.floor(minutes / 60);
+
+    // Format durasi menjadi HH:MM:SS
+    var formattedDuration = hours.toString().padStart(2, '0') + ':' +
+                            (minutes % 60).toString().padStart(2, '0') + ':' +
+                            (seconds % 60).toString().padStart(2, '0');
+
+    durationInput.value = formattedDuration;
+
+    setTimeout(updateDuration, 1000); // Memperbarui durasi setiap detik
+}
+
+updateDuration();
+
+window.onload = function() {
+    document.getElementById('myForm').reset();
+  };

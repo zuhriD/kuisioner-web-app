@@ -63,6 +63,9 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     Route::get('/getDataPml/{id}', [App\Http\Controllers\HomeController::class, 'getDataPml']);
     Route::get('/getDataKuisioner/{id}', [App\Http\Controllers\HomeController::class, 'getDataKuisioner']);
 
+    // Result
+    Route::post('/result', [App\Http\Controllers\ResultController::class, 'store'])->name('result.store');
+
     // Logout
     Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('auths.logout');
 });

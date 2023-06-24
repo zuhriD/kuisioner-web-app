@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
 
         // make user roles admin and user
         \App\Models\Role::create([
@@ -89,18 +88,19 @@ class DatabaseSeeder extends Seeder
             'no_kk' => '3510161708000001',
             'kode_kk' => '1',
         ]);
-
-        // make pml 
-        \App\Models\Pml::create([
+        
+        // make ppl
+        \App\Models\Ppl::create([
             'id' => 2301,
             'name' => 'Yusuf Arifandi',
         ]);
 
-        // make ppl
-        \App\Models\Ppl::create([
+        // make pml 
+        \App\Models\Pml::create([
             'id' => 230,
             'name' => 'Maulana Huda',
         ]);
+
 
         // make kuisioner
         \App\Models\Kuisioner::create([
@@ -111,8 +111,8 @@ class DatabaseSeeder extends Seeder
             'desa_id' => 18,
             'sls_id' => 2,
             'keluarga_id' => 1,
-            'pml_id' => 2301,
-            'ppl_id' => 230,
+            'ppl_id' => 2301,
+            'pml_id' => 230,
             'status_pendataan' => '1',
             'tanggal_pendataan' => '2022-05-14',
             'tanggal_pemeriksaan' => '2022-05-17',
