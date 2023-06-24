@@ -18,4 +18,10 @@ class Sl extends Model
     {
         return $this->belongsTo(Desa::class);
     }
+
+    // make relationship with kuisioner
+    public function kuisioner()
+    {
+        return $this->hasMany(Kuisioner::class);
+    }
 }

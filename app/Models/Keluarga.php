@@ -20,6 +20,10 @@ class Keluarga extends Model
         'kode_kk',
     ];
 
-    
+    // make relationship with kuisioner
+    public function kuisioner()
+    {
+        return $this->hasMany(Kuisioner::class);
+    }
 
 }

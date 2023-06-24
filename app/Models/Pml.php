@@ -9,4 +9,10 @@ class Pml extends Model
 {
     use HasFactory;
     protected $fillable = ['name'];
+
+    // make relationship with kuisioner
+    public function kuisioner()
+    {
+        return $this->hasMany(Kuisioner::class);
+    }
 }

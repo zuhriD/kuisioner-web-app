@@ -10,4 +10,10 @@ class Provinsi extends Model
     use HasFactory;
     protected $fillable = ['name'];
 
+    // make relationship with kuisiner
+    public function kuisioner()
+    {
+        return $this->hasMany(Kuisioner::class);
+    }
+
 }

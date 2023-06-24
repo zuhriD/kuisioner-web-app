@@ -13,6 +13,7 @@ class Kuisioner extends Model
         'kabupaten_id',
         'kecamatan_id',
         'desa_id',
+        'sls_id',
         'keluarga_id',
         'pml_id',
         'ppl_id',
@@ -44,6 +45,12 @@ class Kuisioner extends Model
     public function desa()
     {
         return $this->belongsTo(Desa::class);
+    }
+
+    // make relationship with sls
+    public function sls()
+    {
+        return $this->belongsTo(Sl::class);
     }
 
     //make relationship with keluarga

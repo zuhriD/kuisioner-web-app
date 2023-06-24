@@ -9,6 +9,10 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+      {{-- Make name user in here --}}
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link"><b>{{ Auth::user()->name }}</b></a>
+      </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('auths.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 Logout

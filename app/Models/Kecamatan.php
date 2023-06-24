@@ -15,4 +15,10 @@ class Kecamatan extends Model
     {
         return $this->belongsTo(Kabupaten::class);
     }
+
+    // make relationship with kuisiner
+    public function kuisioner()
+    {
+        return $this->hasMany(Kuisioner::class);
+    }
 }

@@ -16,4 +16,10 @@ class Desa extends Model
     {
         return $this->belongsTo(Kecamatan::class);
     }
+
+    // make relationship with kuisiner
+    public function kuisioner()
+    {
+        return $this->hasMany(Kuisioner::class);
+    }
 }
