@@ -11,19 +11,12 @@
 			right: 10px;
 			z-index: 9999;
 		}
-    .save-button {
-			position: fixed;
-			top: 10px;
-			right: 90px;
-			z-index: 9999;
-		}
     .table-bordered {
 			border: 1px solid black;
 		}
 
 		.table-bordered th,
 		.table-bordered td {
-			border: 1px solid black;
 			padding-top: 0.1rem;
       padding-bottom: 0.1rem;
       font-size: 12px;
@@ -43,7 +36,6 @@
     font-weight: 400;
 }
 input.form-control {
-	border: 1px solid black;
   border-radius: 0;
 }
 /* style btn */
@@ -57,10 +49,12 @@ input.form-control {
 
     
 	</style>
+  {{-- Jquery --}}
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
   <!-- Tombol Logout -->
-	<a href="#" class="btn btn-danger logout-button">Logout</a>
+	<a href="{{ route('auths.logout') }}" class="btn btn-danger logout-button">Logout</a>
 	<div class="container">
     {{-- make title here --}}
     <div class="row">
@@ -71,7 +65,7 @@ input.form-control {
         <p>Rahasia</p>
       </div>
       <div class="col-md-3">
-        <p>Kuisioner Ke- 1 dari <input type="text" class="form-control" value="3" style="width: 50px; display: inline-block;"> </p>
+        <p>Kuisioner Ke- 1 dari <input type="text" class="form-control" value="3" style="width: 50px; display: inline-block;" readonly> </p>
       </div>
     </div>
 		<div class="table-responsive">
@@ -85,64 +79,66 @@ input.form-control {
 					<tr>
 						<td>Provinsi</td>
             <td>
+              <form action="" method="post">
+              @csrf
               <div class="row">
                 <div class="col-md-10">
-                  <p>Karangrejo</p>
+                  <p id="provinsi"></p>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                      <input type="text" class="form-control" value="018">
+                      <input type="text" class="form-control" name="provinsi_id" id="provinsi_id" onkeyup="isi_provinsi()">
                     </div>
                   </div>
               </div>              
             </td>
 						<td>Nama Kepala Keluarga</td>
-						<td><input type="text" class="form-control" value="(Slamet Efendi)"></td>
+						<td><input type="text" class="form-control" name="kepala_keluarga" ></td>
 					</tr>
 					<tr>
             <td>Kabupaten</td>
             <td>
               <div class="row">
                 <div class="col-md-10">
-                  <p>Karangrejo</p>
+                  <p id="kabupaten"></p>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                      <input type="text" class="form-control" value="018">
+                      <input type="text" class="form-control" name="kabupaten_id" id="kabupaten_id" onkeyup="isi_kabupaten()">
                     </div>
                   </div>
               </div>              
             </td>
             <td>Nomor Urut Bangunan Tempat Tinggal</td>
-            <td><input type="text" class="form-control" value="(12)" ></td>
+            <td><input type="text" class="form-control" name="no_urut_bangunan" ></td>
           </tr>
           <tr>
             <td>Kecamatan</td>
             <td>
               <div class="row">
                 <div class="col-md-10">
-                  <p>Karangrejo</p>
+                  <p id="kecamatan"></p>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                      <input type="text" class="form-control" value="018">
+                      <input type="text" class="form-control" name="kecamatan_id" id="kecamatan_id" onkeyup="isi_kecamatan()">
                     </div>
                   </div>
               </div>              
             </td>
             <td>Nomor Urut Keluarga Hasil Verifikasi</td>
-            <td><input type="text" class="form-control" value="(14)" ></td>
+            <td><input type="text" class="form-control" name="no_urut_keluarga_verifikasi" ></td>
           </tr>
           <tr>
             <td>Desa/Kelurahan</td>
             <td>
               <div class="row">
                 <div class="col-md-10">
-                  <p>Karangrejo</p>
+                  <p id="desa"></p>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                      <input type="text" class="form-control" value="018">
+                      <input type="text" class="form-control" name="desa_id" id="desa_id" onkeyup="isi_desa()">
                     </div>
                   </div>
               </div>              
@@ -150,7 +146,7 @@ input.form-control {
             <td>Status Keluarga</td>
             <td>
               <div class="form-group">
-                <input type="text" class="form-control" value="3">
+                <input type="text" class="form-control" name="status_keluarga">
                 <small class="form-text">
                   1. Sangat Miskin<br>
                   2. Miskin<br>
@@ -164,40 +160,41 @@ input.form-control {
             <td>
               <div class="row">
                 <div class="col-md-4">
-                  <input type="text" class="form-control" value="(0002)">
+                  <input type="text" class="form-control" name="kode_sls" id="kode_sls" >
                 </div>
                 <div class="col-md-4">
                   Kode Sub SLS 
                 </div>
                 <div class="col-md-4">
-                  <input type="text" class="form-control" value="(02)">
+                  <input type="text" class="form-control" name="kode_sub_sls" id="kode_sub_sls" onkeyup="isi_kode_sls()">
                 </div>
               </div>
             </td>
             <td>Jumlah Anggota Keluarga</td>
-            <td><input type="text" class="form-control" value="(5)" ></td>
+            <td><input type="text" class="form-control" name="jml_anggota_keluarga" ></td>
           </tr>
           <tr>
             <td>Nama SLS/Non SLS</td>
-            <td><input type="text" class="form-control" value="" ></td>
+            <td><input type="text" class="form-control" name="nama_sls" id="nama_sls" readonly></td>
             <td>ID Landmark Wilkerstat</td>
-            <td><input type="text" class="form-control" value="(67B4PT)" ></td>
+            <td><input type="text" class="form-control" name="landmark"></td>
            
           </tr>
           <tr>
             <td rowspan="2">Alamat</td>
             <td rowspan="2">
               {{-- buat textarea --}}
-              <textarea name="" id="" cols="30" rows="5" class="form-control" style="border: 1px solid black">Jl. Raya Tamanbaru</textarea>
+              <textarea name="" id="" cols="30" rows="5" class="form-control" name="alamat">
+              </textarea>
             </td>
             <td>Nomor Kartu Keluarga</td>
-            <td> <input type="text" class="form-control" value="(3510161708000001)"></td>
+            <td> <input type="text" class="form-control" name="no_kk" ></td>
           </tr>
           <tr>
             <td>Kode Kartu Keluarga</td>
             <td>
               <div class="form-group">
-                <input type="text" class="form-control" value="(1)">
+                <input type="text" class="form-control" name="kode_kk">
                 <small class="form-text">
                   0. KK Sesuai<br>
                   1. Keluarga Induk<br>
@@ -223,13 +220,13 @@ input.form-control {
             <td>
               <div class="row">
                 <div class="col-md-4">
-                  <input type="text" class="form-control" placeholder="Tanggal">
+                  <input type="text" class="form-control" name="pendataan_tgl" >
                 </div>
                 <div class="col-md-4">
-                  <input type="text" class="form-control" placeholder="Bulan">
+                  <input type="text" class="form-control" name="pendataan_bln" >
                 </div>
                 <div class="col-md-4">
-                  <input type="text" class="form-control" placeholder="Tahun">
+                  <input type="text" class="form-control" name="pendataan_thn" >
                 </div>
               </div>
             </td>
@@ -239,7 +236,7 @@ input.form-control {
                   Saya menyatakan telah melaksanakan pendataan sesuai dengan prosedur
                 </div>
                 <div class="col-md-2">
-                  <input type="text" class="form-control" placeholder="1">
+                  <input type="text" class="form-control" name="prosedur_pendataan">
                 </div>
               </div>
             </td>
@@ -248,11 +245,12 @@ input.form-control {
             <td>Nama PPL:</td>
             <td>
               <div class="form-inline">
-                <div class="form-group mr-2">
-                  <input type="text" class="form-control" value="Maulana Huda" >
+                <div class="form-group mr-5">
+                  <input type="text" class="form-control" name="ppl_nama" id="ppl_nama" readonly>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" value="0230" >
+                  <label for="" class="mr-2">Kode</label>
+                  <input type="text" class="form-control" id="kode_ppl" onkeyup="isi_ppl()">
                 </div>
               </div>
             </td>
@@ -262,13 +260,13 @@ input.form-control {
             <td>
               <div class="row">
                 <div class="col-md-4">
-                  <input type="text" class="form-control" placeholder="Tanggal">
+                  <input type="text" class="form-control" name="pemeriksaan_tgl" >
                 </div>
                 <div class="col-md-4">
-                  <input type="text" class="form-control" placeholder="Bulan">
+                  <input type="text" class="form-control" name="pemeriksaan_bln" >
                 </div>
                 <div class="col-md-4">
-                  <input type="text" class="form-control" placeholder="Tahun">
+                  <input type="text" class="form-control" name="pemeriksaan_thn" >
                 </div>
               </div>
             </td>
@@ -278,7 +276,7 @@ input.form-control {
                   Saya menyatakan telah melaksanakan pemeriksaan sesuai dengan prosedur
                 </div>
                 <div class="col-md-2">
-                  <input type="text" class="form-control" placeholder="1">
+                  <input type="text" class="form-control" name="prosedur_pemeriksaan">
                 </div>
               </div>
             </td>
@@ -287,11 +285,12 @@ input.form-control {
             <td>Nama PML:</td>
             <td>
               <div class="form-inline">
-                <div class="form-group">
-                  <input type="text" class="form-control" value="Maulana Huda" >
+                <div class="form-group mr-5">
+                  <input type="text" class="form-control"  name="pml_nama" id="pml_nama" readonly>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" value="0230" >
+                  <label for="" class="mr-2">Kode</label>
+                  <input type="text" class="form-control" id="kode_pml" onkeyup="isi_pml()">
                 </div>
               </div>
             </td>
@@ -310,7 +309,7 @@ input.form-control {
                   </small>
                 </div>
                 <div class="col-md-2">
-                  <input type="text" class="form-control" placeholder="1">
+                  <input type="text" class="form-control" name="hasil_pendataan">
                  
                 </div>
               </div>
@@ -321,7 +320,7 @@ input.form-control {
                   Saya menyatakan bahwa informasi yang diberikan adalah benar, dan boleh dipergunakan untuk keperluan pemerintah
                 </div>
                 <div class="col-md-2">
-                  <input type="text" class="form-control" placeholder="1">
+                  <input type="text" class="form-control" name="status_informasi">
                 </div>
               </div>
             </td>
@@ -333,7 +332,7 @@ input.form-control {
                   Nomor Handphone Responden:
                 </div>
                 <div class="col-md-4">
-                  <input type="text" class="form-control" id="nomorHandphone" placeholder="Nomor Handphone">
+                  <input type="text" class="form-control" id="nomorHandphone" name="no_hp">
                 </div>
               </div>
 						</td>
@@ -347,10 +346,12 @@ input.form-control {
         <div class="float-right">
           <button class="btn btn-success">Kirim</button>
         </div>
+        </form>
       </div>
     </div>
 	</div>
 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="{{  asset('js/form.js') }}"></script>
 </body>
 </html>

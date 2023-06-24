@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,13 +45,24 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     // kuisioner
     Route::resource('kuisioners', App\Http\Controllers\KuisionerController::class);
 
-
     // Logout
     Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('auths.logout');
 });
 
 Route::group(['middleware' => ['auth', 'user']], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('homeUser');
+
+    // Get Data for ajax automaticly
+    Route::get('/getDataProvinsi/{id}', [App\Http\Controllers\HomeController::class, 'getDataProvinsi']);
+    Route::get('/getDataKabupaten/{id}', [App\Http\Controllers\HomeController::class, 'getDataKabupaten']);
+    Route::get('/getDataKecamatan/{id}', [App\Http\Controllers\HomeController::class, 'getDataKecamatan']);
+    Route::get('/getDataDesa/{id}', [App\Http\Controllers\HomeController::class, 'getDataDesa']);
+    Route::get('/getDataSl/{id}/{id_sub}', [App\Http\Controllers\HomeController::class, 'getDataSl']);
+    Route::get('/getDataKeluarga/{id}', [App\Http\Controllers\HomeController::class, 'getDataKeluarga']);
+    Route::get('/getDataPpl/{id}', [App\Http\Controllers\HomeController::class, 'getDataPpl']);
+    Route::get('/getDataPml/{id}', [App\Http\Controllers\HomeController::class, 'getDataPml']);
+    Route::get('/getDataKuisioner/{id}', [App\Http\Controllers\HomeController::class, 'getDataKuisioner']);
+
     // Logout
     Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('auths.logout');
 });

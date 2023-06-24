@@ -2,6 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Provinsi;
+use App\Models\Kabupaten;
+use App\Models\Kecamatan;
+use App\Models\Desa;
+use App\Models\Keluarga;
+use App\Models\Sl;
+use App\Models\Ppl;
+use App\Models\Pml;
+use App\Models\Kuisioner;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -82,4 +91,60 @@ class HomeController extends Controller
     {
         //
     }
+
+    public function getDataProvinsi($id)
+    {
+        $provinsi = Provinsi::findOrfail($id);
+        return response()->json($provinsi);
+    }
+
+    public function getDataKabupaten($id)
+    {
+        $kabupaten = Kabupaten::findOrfail($id);
+        return response()->json($kabupaten);
+    }
+
+    public function getDataKecamatan($id)
+    {
+        $kecamatan = Kecamatan::findOrfail($id);
+        return response()->json($kecamatan);
+    }
+
+    public function getDataDesa($id)
+    {
+        $desa = Desa::findOrfail($id);
+        return response()->json($desa);
+    }
+
+    public function getDataKeluarga($id)
+    {
+        $keluarga = Keluarga::findOrfail($id);
+        return response()->json($keluarga);
+    }
+
+    public function getDataSl($kode, $sub)
+    {
+        $sl = Sl::where('id', $kode)->where('sub_sls', $sub)->first();
+        return response()->json($sl);
+    }
+
+    public function getDataPpl($id)
+    {
+        $ppl = Ppl::findOrfail($id);
+        return response()->json($ppl);
+    }
+
+    public function getDataPml($id)
+    {
+        $pml = Pml::findOrfail($id);
+        return response()->json($pml);
+    }
+
+    public function getDataKuisioner($id)
+    {
+        $kuisioner = Kuisioner::findOrfail($id);
+        return response()->json($kuisioner);
+    }
+
+
 }
