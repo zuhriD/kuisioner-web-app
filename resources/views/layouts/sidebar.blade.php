@@ -105,14 +105,14 @@
             </a>
           </li>
           {{-- make nav item for result --}}
-          {{-- <li class="nav-item">
+          <li class="nav-item">
             <a href="{{ route('result.index') }}" class="nav-link {{ (request()->is('result')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-chart-bar"></i>
               <p>
                 Result
               </p>
             </a>
-          </li> --}}
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

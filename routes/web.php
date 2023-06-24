@@ -45,6 +45,9 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     // kuisioner
     Route::resource('kuisioners', App\Http\Controllers\KuisionerController::class);
 
+    // Result
+    Route::get('/result', [App\Http\Controllers\ResultController::class, 'index'])->name('result.index');
+
     // Logout
     Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('auths.logout');
 });
