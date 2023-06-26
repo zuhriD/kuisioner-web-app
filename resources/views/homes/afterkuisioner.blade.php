@@ -25,6 +25,8 @@
         <div class="card text-center">
             <div class="card-body">
                 <h5 class="card-title">Kuisioner Telah Diisi</h5>
+                {{-- tambahkan nilai score --}}
+                <p class="card-text">Nilai Anda adalah {{$result->score}}.</p>
                 <p class="card-text">Terima kasih atas partisipasi Anda dalam mengisi kuisioner.</p>
             </div>
         </div>

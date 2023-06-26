@@ -176,19 +176,18 @@ class ResultController extends Controller
         if ($errorCount == 27){
             $errorCount= $totalCount;
         }
-
        
         // Hitung persentase akurasi
         $accuracy = 100 - ($errorCount * 100) / $totalCount;
 
-        if ($speed != null && $accuracy != null) {
+        if ($speed != null ) {
             Result::create([
                 'user_id' => Auth::user()->id,
                 'time' => $speed,
                 'score' => $accuracy,
             ]);
 
-            return redirect()->route('homeUser')->with('score', $accuracy);
+            return redirect()->route('homeUser');
         }
 
         return redirect()->route('homeUser')->with('error', 'Gagal Save Data');
