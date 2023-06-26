@@ -69,6 +69,9 @@ Route::group(['middleware' => ['auth', 'user']], function () {
     // Result
     Route::post('/result', [App\Http\Controllers\ResultController::class, 'store'])->name('result.store');
 
+    // After Result
+    Route::get('/afterResult', [App\Http\Controllers\ResultController::class, 'showResult'])->name('afterResult');
+
     // Logout
     Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('auths.logout');
 });

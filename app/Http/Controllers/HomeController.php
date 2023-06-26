@@ -27,7 +27,7 @@ class HomeController extends Controller
         //
         $result = Result::where('user_id', Auth::user()->id)->first();
         if($result){
-            return view('homes.afterkuisioner');
+            return redirect()->route('afterResult');
         }
         return view('index');
     }

@@ -4,13 +4,7 @@
 	<title>Form Tabel</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<style>
-    
-		.logout-button {
-			position: fixed;
-			top: 10px;
-			right: 10px;
-			z-index: 9999;
-		}
+
     .table-bordered {
 			border: 1px solid black;
 		}
@@ -53,11 +47,6 @@ input.form-control {
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-  <!-- Tombol Logout -->
-	<form id="logout-form" action="{{ route('auths.logout') }}" method="POST" id="myForm">
-    @csrf
-    <button type="submit" class="btn btn-danger logout-button">Logout</button>
-</form>
 	<div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -84,7 +73,7 @@ input.form-control {
               <form action="{{ route('result.store') }}" method="post">
               @csrf
               <input type="hidden" id="durationInput" name="durationInput">
-              <div class="row">
+              <div class="row mt-1">
                 <div class="col-md-10">
                   <p id="provinsi"></p>
                 </div>
@@ -96,12 +85,12 @@ input.form-control {
               </div>              
             </td>
 						<td>Nama Kepala Keluarga</td>
-						<td><input type="text" class="form-control" name="kepala_keluarga" ></td>
+						<td><input type="text" class="form-control mt-1" name="kepala_keluarga" ></td>
 					</tr>
 					<tr>
             <td>Kabupaten</td>
             <td>
-              <div class="row">
+              <div class="row mt-1">
                 <div class="col-md-10">
                   <p id="kabupaten"></p>
                 </div>
@@ -113,12 +102,12 @@ input.form-control {
               </div>              
             </td>
             <td>Nomor Urut Bangunan Tempat Tinggal</td>
-            <td><input type="text" class="form-control" name="no_urut_bangunan" ></td>
+            <td><input type="text" class="form-control mt-1" name="no_urut_bangunan" ></td>
           </tr>
           <tr>
             <td>Kecamatan</td>
             <td>
-              <div class="row">
+              <div class="row mt-1">
                 <div class="col-md-10">
                   <p id="kecamatan"></p>
                 </div>
@@ -130,25 +119,25 @@ input.form-control {
               </div>              
             </td>
             <td>Nomor Urut Keluarga Hasil Verifikasi</td>
-            <td><input type="text" class="form-control" name="no_urut_keluarga_verifikasi" ></td>
+            <td><input type="text" class="form-control mt-1" name="no_urut_keluarga_verifikasi" ></td>
           </tr>
           <tr>
             <td>Desa/Kelurahan</td>
             <td>
-              <div class="row">
+              <div class="row mt-1">
                 <div class="col-md-10">
                   <p id="desa"></p>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="desa_id" id="desa_id" onkeyup="isi_desa()">
+                      <input type="text" class="form-control mt-1" name="desa_id" id="desa_id" onkeyup="isi_desa()">
                     </div>
                   </div>
               </div>              
             </td>
             <td>Status Keluarga</td>
             <td>
-              <div class="form-group">
+              <div class="form-group mt-1">
                 <input type="text" class="form-control" name="status_keluarga">
                 <small class="form-text">
                   1. Sangat Miskin<br>
@@ -161,7 +150,7 @@ input.form-control {
           <tr>
             <td>Kode SLS/Non SLS</td>
             <td>
-              <div class="row">
+              <div class="row mt-1">
                 <div class="col-md-4">
                   <input type="text" class="form-control" name="kode_sls" id="kode_sls" >
                 </div>
@@ -174,29 +163,29 @@ input.form-control {
               </div>
             </td>
             <td>Jumlah Anggota Keluarga</td>
-            <td><input type="text" class="form-control" name="jml_anggota_keluarga" ></td>
+            <td><input type="text" class="form-control mt-1" name="jml_anggota_keluarga" ></td>
           </tr>
           <tr>
             <td>Nama SLS/Non SLS</td>
-            <td><input type="text" class="form-control" name="nama_sls" id="nama_sls" readonly></td>
+            <td><input type="text" class="form-control mt-1" name="nama_sls" id="nama_sls" readonly></td>
             <td>ID Landmark Wilkerstat</td>
-            <td><input type="text" class="form-control" name="landmark"></td>
+            <td><input type="text" class="form-control mt-1" name="landmark"></td>
            
           </tr>
           <tr>
             <td rowspan="2">Alamat</td>
             <td rowspan="2">
               {{-- buat textarea --}}
-              <textarea name="" id="" cols="30" rows="5" class="form-control" name="alamat">
+              <textarea name="" id="" cols="30" rows="5" class="form-control mt-1" name="alamat">
               </textarea>
             </td>
             <td>Nomor Kartu Keluarga</td>
-            <td> <input type="text" class="form-control" name="no_kk" ></td>
+            <td> <input type="text" class="form-control mt-1" name="no_kk" ></td>
           </tr>
           <tr>
             <td>Kode Kartu Keluarga</td>
             <td>
-              <div class="form-group">
+              <div class="form-group mt-1">
                 <input type="text" class="form-control" name="kode_kk">
                 <small class="form-text">
                   0. KK Sesuai<br>
@@ -222,7 +211,7 @@ input.form-control {
 						<td>Tgl Pendataan: </td>
             <td>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-5">
                 </div>
                 <div class="col-md-2">
                   <label for="">Tanggal</label>
@@ -232,7 +221,7 @@ input.form-control {
                   <label for="">Bulan</label>
                   <input type="text" class="form-control" name="pendataan_bln" >
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <label for="">Tahun</label>
                   <input type="text" class="form-control" name="pendataan_thn" >
                 </div>
@@ -252,7 +241,7 @@ input.form-control {
           <tr>
             <td>Nama PPL:</td>
             <td>
-              <div class="row">
+              <div class="row mt-1">
                 <div class="col-md-8">
                   <div class="form-group mr-5">
                     <input type="text" class="form-control" name="ppl_nama" id="ppl_nama" readonly>
@@ -273,7 +262,7 @@ input.form-control {
 						<td>Tgl Pemeriksaaan: </td>
             <td>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-5">
                 </div>
                 <div class="col-md-2">
                   <label for="">Tanggal</label>
@@ -283,7 +272,7 @@ input.form-control {
                   <label for="">Bulan</label>
                   <input type="text" class="form-control" name="pemeriksaan_bln" >
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <label for="">Tahun</label>
                   <input type="text" class="form-control" name="pemeriksaan_thn" >
                 </div>
@@ -303,7 +292,7 @@ input.form-control {
 					<tr>
             <td>Nama PML:</td>
             <td>
-              <div class="row">
+              <div class="row mt-1">
                 <div class="col-md-8">
                   <div class="form-group mr-5">
                     <input type="text" class="form-control" name="pml_nama" id="pml_nama" readonly>

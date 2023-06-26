@@ -23,5 +23,5 @@ class Sl extends Model
     public function kuisioner()
     {
         return $this->hasMany(Kuisioner::class);
-    }
+    }      
 }
