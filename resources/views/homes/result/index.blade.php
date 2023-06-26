@@ -52,7 +52,7 @@
              <td>{{$item->time}}</td>
              <td>{{$item->score}}</td>
               <td>
-                <form action="{{ route('results.destroy', $item->id) }}" method="POST" class="d-inline">
+                <form action="{{ route('result.destroy', $item->id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete this data?')"><i class="fas fa-trash"></i></button>

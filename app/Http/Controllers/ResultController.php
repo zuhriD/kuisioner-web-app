@@ -17,7 +17,8 @@ class ResultController extends Controller
     public function index()
     {
         //
-        return view('homes.result.index');
+        $result = Result::all();
+        return view('homes.result.index', compact('result'));
     }
 
     /**
@@ -236,5 +237,8 @@ class ResultController extends Controller
     public function destroy($id)
     {
         //
+        $kuisioner = Kuisioner::findOrfail($id);
+        $kuisioner->delete();
+        return redirect()->route('result.index')->with('success', 'Data Berhasil Dihapus');
     }
 }

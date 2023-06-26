@@ -68,6 +68,7 @@ Route::group(['middleware' => ['auth', 'user']], function () {
 
     // Result
     Route::post('/result', [App\Http\Controllers\ResultController::class, 'store'])->name('result.store');
+    Route::delete('/result/{id}', [App\Http\Controllers\ResultController::class, 'destroy'])->name('result.destroy');
 
     // After Result
     Route::get('/afterResult', [App\Http\Controllers\ResultController::class, 'showResult'])->name('afterResult');
