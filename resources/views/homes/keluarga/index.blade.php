@@ -48,6 +48,7 @@
               <th>ID Landmark</th>
               <th>NO KK</th>
               <th>Kode KK</th>
+              <th>Alamat</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -57,11 +58,20 @@
                 <td>{{$item->nama_kepala_keluarga}}</td>
                 <td>{{$item->no_urut_bangunan}}</td>
                 <td>{{$item->no_urut_keluarga_verifikasi}}</td>
-                <td>{{$item->status}}</td>
+                <td>
+                  @if ($item->status == 1)
+                      <span>Sangat Miskin</span>
+                  @elseif($item->status == 2)
+                      <span>Miskin</span>
+                  @elseif($item->status == 3)
+                      <span>Tidak Miskin</span>
+                  @endif
+                </td>
                 <td>{{$item->jml_anggota_keluarga}}</td>
                 <td>{{$item->landmark}}</td>
                 <td>{{$item->no_kk}}</td>
                 <td>{{$item->kode_kk}}</td>
+                <td>{{ $item->alamat }}</td>
               <td>
                 <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#editKeluargaModal" data-id="{{$item->id}}" >
                     <i class="fas fa-edit"></i>
@@ -133,6 +143,12 @@
                   <input type="text" class="form-control" id="kode_kk" placeholder="Example: Jawa Tengah" name="kode_kk" required>
                 </div>
               </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="alamat">Alamat</label>
+                <textarea class="form-control" id="alamat" rows="3" name="alamat" required></textarea>
+              </div>
+            </div>
             <div class="col-md-12 text-right">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
@@ -174,9 +190,9 @@
               <label for="status">Status</label>
               {{-- form type select --}}
               <select class="form-control" id="statusEdit" name="status" required>
-                <option value="sangat_miskin">Sangat Miskin</option>
-                <option value="miskin">Miskin</option>
-                <option value="tdk_miskin">Tidak Miskin</option>
+                <option value="1">Sangat Miskin</option>
+                <option value="2">Miskin</option>
+                <option value="3">Tidak Miskin</option>
               </select>
               </div>
           </div>
@@ -196,6 +212,12 @@
               <div class="form-group">
                 <label for="kode_kk">Kode KK</label>
                 <input type="text" class="form-control" id="kode_kkEdit" placeholder="Example: Jawa Tengah" name="kode_kk" required>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="alamat">Alamat</label>
+                <textarea class="form-control" id="alamatEdit" rows="3" name="alamat" required></textarea>
               </div>
             </div>
           <div class="col-md-12 text-right">

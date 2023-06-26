@@ -50,9 +50,9 @@ class UserController extends Controller
             $user->password = bcrypt($request->password);
             $user->role_id = 2;
             $user->save();
-            return redirect()->route('users.index')->with('success', "Data berhasil ditambahkan");
+            return redirect()->route('homeAdmin')->with('success', "Data berhasil ditambahkan");
         }
-        return redirect()->route('users.index')->with('error', "Data gagal ditambahkan");
+        return redirect()->route('homeAdmin')->with('error', "Data gagal ditambahkan");
     }
 
     /**

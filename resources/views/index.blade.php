@@ -222,13 +222,18 @@ input.form-control {
 						<td>Tgl Pendataan: </td>
             <td>
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-2">
+                  <label for="">Tanggal</label>
                   <input type="text" class="form-control" name="pendataan_tgl" >
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
+                  <label for="">Bulan</label>
                   <input type="text" class="form-control" name="pendataan_bln" >
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
+                  <label for="">Tahun</label>
                   <input type="text" class="form-control" name="pendataan_thn" >
                 </div>
               </div>
@@ -247,13 +252,19 @@ input.form-control {
           <tr>
             <td>Nama PPL:</td>
             <td>
-              <div class="form-inline">
-                <div class="form-group mr-5">
-                  <input type="text" class="form-control" name="ppl_nama" id="ppl_nama" readonly>
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group mr-5">
+                    <input type="text" class="form-control" name="ppl_nama" id="ppl_nama" readonly>
+                  </div>
                 </div>
-                <div class="form-group">
+                <div class="col-md-1">
                   <label for="" class="mr-2">Kode</label>
+                </div>
+                <div class="col-md-3">
+                 <div class="form-group">
                   <input type="text" class="form-control" name="kode_ppl" id="kode_ppl" onkeyup="isi_ppl()">
+                 </div>
                 </div>
               </div>
             </td>
@@ -262,13 +273,18 @@ input.form-control {
 						<td>Tgl Pemeriksaaan: </td>
             <td>
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-2">
+                  <label for="">Tanggal</label>
                   <input type="text" class="form-control" name="pemeriksaan_tgl" >
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
+                  <label for="">Bulan</label>
                   <input type="text" class="form-control" name="pemeriksaan_bln" >
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
+                  <label for="">Tahun</label>
                   <input type="text" class="form-control" name="pemeriksaan_thn" >
                 </div>
               </div>
@@ -287,13 +303,19 @@ input.form-control {
 					<tr>
             <td>Nama PML:</td>
             <td>
-              <div class="form-inline">
-                <div class="form-group mr-5">
-                  <input type="text" class="form-control"  name="pml_nama" id="pml_nama" readonly>
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group mr-5">
+                    <input type="text" class="form-control" name="pml_nama" id="pml_nama" readonly>
+                  </div>
                 </div>
-                <div class="form-group">
+                <div class="col-md-1">
                   <label for="" class="mr-2">Kode</label>
+                </div>
+                <div class="col-md-3">
+                 <div class="form-group">
                   <input type="text" class="form-control" name="kode_pml" id="kode_pml" onkeyup="isi_pml()">
+                 </div>
                 </div>
               </div>
             </td>

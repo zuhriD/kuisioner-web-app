@@ -18,11 +18,12 @@ class CreateKeluargasTable extends Migration
             $table->string('nama_kepala_keluarga');
             $table->string('no_urut_bangunan');
             $table->string('no_urut_keluarga_verifikasi');
-            $table->enum('status', ['sangat_miskin', 'miskin', 'tdk_miskin']);
+            $table->enum('status', ['1','2','3']);
             $table->string('jml_anggota_keluarga');
             $table->string('landmark');
             $table->string('no_kk');
             $table->string('kode_kk');
+            $table->string('alamat');
             $table->timestamps();
         });
     }

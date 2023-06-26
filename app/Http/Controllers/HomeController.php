@@ -11,7 +11,9 @@ use App\Models\Sl;
 use App\Models\Ppl;
 use App\Models\Pml;
 use App\Models\Kuisioner;
+use App\Models\Result;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,10 @@ class HomeController extends Controller
     public function index()
     {
         //
+        $result = Result::where('user_id', Auth::user()->id)->first();
+        if($result){
+            return view('homes.afterkuisioner');
+        }
         return view('index');
     }
 
@@ -145,6 +151,7 @@ class HomeController extends Controller
         $kuisioner = Kuisioner::findOrfail($id);
         return response()->json($kuisioner);
     }
+
 
 
 }

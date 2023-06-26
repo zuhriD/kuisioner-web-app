@@ -87,6 +87,7 @@ class DatabaseSeeder extends Seeder
             'landmark' => '67B4PT',
             'no_kk' => '3510161708000001',
             'kode_kk' => '1',
+            'alamat' => 'Jalan Singosari No. 19, Tamanbaru',
         ]);
         
         // make ppl
@@ -117,6 +118,7 @@ class DatabaseSeeder extends Seeder
             'tanggal_pendataan' => '2022-05-14',
             'tanggal_pemeriksaan' => '2022-05-17',
             'no_hp' => '081218735550',
+            'status' => 'aktif'
         ]);
     }
 }

@@ -21,6 +21,7 @@ $('document').ready(function(){
                 $('#tanggal_pendataanEdit').val(detail.tanggal_pendataan);
                 $('#tanggal_pemeriksaanEdit').val(detail.tanggal_pemeriksaan);
                 $('#no_hpEdit').val(detail.no_hp);
+                document.querySelector('#statusEdit option[value="' + detail.status + '"]').selected = true;
             }
         });
         var form  = document.querySelector('#editForm');

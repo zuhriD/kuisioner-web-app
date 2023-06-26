@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,7 +10,8 @@ class AuthController extends Controller
 {
     public function index()
     {
-        return view('auths.index');
+        $sudah_isi = '';
+        return view('auths.index', compact('sudah_isi'));
     }
 
     public function login(Request $request)
@@ -19,19 +21,30 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
-        if(Auth::attempt($credentials) && Auth::user()->role_id == 1){
+        $attempt = Auth::attempt($credentials);
+
+        if ($attempt && Auth::user()->role_id == 1) {
             $request->session()->regenerate();
             return redirect()->intended('/home');
-        }else if(Auth::attempt($credentials) && Auth::user()->role_id == 2){
-            $request->session()->regenerate();
-            return redirect()->intended('/');
+        } else if ($attempt && Auth::user()->role_id == 2) {
+            $cek_kuisioner = Result::where('user_id', Auth::user()->id)->first();
+            if (!$cek_kuisioner) {
+                $request->session()->regenerate();
+                return redirect()->intended('/');
+            }
+            else{
+            $sudah_isi = 'Anda sudah mengisi kuisioner';
+            return view('auths.index', compact('sudah_isi'));
+            }
         }
-        return back()->with('error', 'Login failed!');
+
+        return back()->with('error', 'Username atau Password Salah!');
     }
+
 
     public function logout(Request $request)
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             Auth::logout();
             $request->session()->invalidate();
         }

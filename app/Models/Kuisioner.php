@@ -21,6 +21,7 @@ class Kuisioner extends Model
         'tanggal_pendataan',
         'tanggal_pemeriksaan',
         'no_hp',
+        'status'
     ];
 
     //make relationship with provinsi

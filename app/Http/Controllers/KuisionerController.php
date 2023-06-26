@@ -126,6 +126,7 @@ class KuisionerController extends Controller
             'tanggal_pendataan' => 'required',
             'tanggal_pemeriksaan' => 'required',
             'no_hp' => 'required',
+            'status' => 'required',
         ]);
         if ($validasiData) {
             Kuisioner::where('id', $kuisioner->id)->update($validasiData);

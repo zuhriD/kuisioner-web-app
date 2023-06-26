@@ -47,6 +47,7 @@ class KeluargaController extends Controller
             'id_landmark' => 'required',
             'no_kk' => 'required',
             'kode_kk' => 'required',
+            'alamat' => 'required'
         ]);
         if ($validasiData) {
             $keluarga =  new Keluarga();
@@ -58,6 +59,7 @@ class KeluargaController extends Controller
             $keluarga->landmark = $request->id_landmark;
             $keluarga->no_kk = $request->no_kk;
             $keluarga->kode_kk = $request->kode_kk;
+            $keluarga->alamat = $request->alamat;
             $keluarga->save();
             return redirect()->route('keluargas.index')->with('success', "Data berhasil ditambahkan");
         }
@@ -106,6 +108,7 @@ class KeluargaController extends Controller
             'id_landmark' => 'required',
             'no_kk' => 'required',
             'kode_kk' => 'required',
+            'alamat' => 'required'
         ]);
         if ($validasiData) {
             $keluarga =  Keluarga::findOrfail($keluarga->id);
@@ -117,6 +120,7 @@ class KeluargaController extends Controller
             $keluarga->landmark = $request->id_landmark;
             $keluarga->no_kk = $request->no_kk;
             $keluarga->kode_kk = $request->kode_kk;
+            $keluarga->alamat = $request->alamat;
             $keluarga->save();
             return redirect()->route('keluargas.index')->with('success', "Data berhasil diubah");
         }

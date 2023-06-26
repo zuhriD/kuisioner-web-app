@@ -18,6 +18,7 @@ class Keluarga extends Model
         'landmark',
         'no_kk',
         'kode_kk',
+        'alamat'
     ];
 
     // make relationship with kuisioner

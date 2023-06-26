@@ -45,10 +45,9 @@
               <th>Nama Kabupaten</th>
               <th>Nama Kecamatan</th>
               <th>Nama Desa</th>
-              <th>Kode SLS </th>
-              <th>Sub Kode SLS</th>
               <th>Nama SLS</th>
               <th>Kode Keluarga</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -60,10 +59,14 @@
               <td>{{$item->kabupaten->name}}</td>
               <td>{{$item->kecamatan->name}}</td>
               <td>{{$item->desa->name}}</td>
-              <td>{{$item->sls->id}}</td>
-              <td>{{$item->sls->sub_sls}}</td>
               <td>{{$item->sls->name}}</td>
               <td>{{$item->keluarga->kode_kk}}</td>
+              <td>
+              @if ($item->status == 'aktif')
+                  <span class="badge badge-success">Aktif</span>
+              @else
+                  <span class="badge badge-danger">Tidak Aktif</span>
+              @endif
               <td>
                 <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#editKuisionerModal" data-id="{{$item->id}}" >
                     <i class="fas fa-edit"></i>
@@ -318,9 +321,20 @@
               <label for="clientName">No HP</label>
               <input type="text" name="no_hp" id="no_hpEdit" class="form-control" placeholder="No HP" required>
             </div>
+           
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select name="status" id="statusEdit" class="form-control" required>
+                <option value="">-- Pilih Status --</option>
+                <option value="aktif">Aktif</option>
+                <option value="nonaktif">Non Aktif</option>
+              </select>
+            </div>
           </div>
           <div class="col-md-12 text-right">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-success">Save</button>
           </div>
         </form>
       </div>        

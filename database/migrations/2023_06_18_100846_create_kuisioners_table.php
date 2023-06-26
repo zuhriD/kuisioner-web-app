@@ -27,6 +27,7 @@ class CreateKuisionersTable extends Migration
             $table->date('tanggal_pendataan');
             $table->date('tanggal_pemeriksaan');
             $table->string('no_hp');
+            $table->enum('status', ['aktif', 'nonaktif'])->default('aktif');
             $table->timestamps();
         });
     }

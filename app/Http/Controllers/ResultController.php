@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kuisioner;
 use App\Models\Result;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ResultController extends Controller
 {
@@ -69,7 +71,117 @@ class ResultController extends Controller
         $status_informasi = $request->input('status_informasi');
         $no_hp = $request->input('no_hp');
         $durationInput = $request->input('durationInput');
-        
+
+        // Penilaian Waktu
+        // Ubah durasi menjadi detik
+        $durationInSeconds = strtotime($durationInput) - strtotime('00:00:00');
+
+        if ($durationInSeconds < 45) {
+            $speed = "fast";
+        } elseif ($durationInSeconds >= 45 && $durationInSeconds <= 60) {
+            $speed = "Medium";
+        } else {
+            $speed = "slow";
+        }
+
+        // Membandingkan dengan data kuisioner
+        $kuisioner = Kuisioner::with(
+            'provinsi',
+            'kabupaten',
+            'kecamatan',
+            'desa',
+            'keluarga',
+            'sls',
+            'keluarga',
+            'ppl',
+            'pml'
+        )->where('status', 'aktif')->first();
+
+
+
+        // Penilaian Akurasi
+        // Hitung jumlah huruf error atau salah
+        $errorCount = 0;
+        $errorCount += ($provinsi_id !== strval($kuisioner->provinsi->id)) ? strlen($provinsi_id) : 0;
+        $errorCount += ($kabupaten_id !== strval($kuisioner->kabupaten->id)) ? strlen($kabupaten_id) : 0;
+        $errorCount += ($kecamatan_id !== strval($kuisioner->kecamatan->id)) ? strlen($kecamatan_id) : 0;
+        $errorCount += ($desa_id !== strval($kuisioner->desa->id)) ? strlen($desa_id) : 0;
+        $errorCount += ($kepala_keluarga !== strval($kuisioner->keluarga->nama_kepala_keluarga)) ? strlen($kepala_keluarga) : 0;
+        $errorCount += ($no_urut_bangunan !== strval($kuisioner->keluarga->no_urut_bangunan)) ? strlen($no_urut_bangunan) : 0;
+        $errorCount += ($no_urut_keluarga_verifikasi !== strval($kuisioner->keluarga->no_urut_keluarga_verifikasi)) ? strlen($no_urut_keluarga_verifikasi) : 0;
+        $errorCount += ($status_keluarga !== strval($kuisioner->keluarga->status)) ? strlen($status_keluarga) : 0;
+        $errorCount += ($kode_sls !== strval($kuisioner->sls->id)) ? strlen($kode_sls) : 0;
+        $errorCount += ($kode_sub_sls !== strval($kuisioner->sls->sub_sls)) ? strlen($kode_sub_sls) : 0;
+        $errorCount += ($jml_anggota_keluarga !== strval($kuisioner->keluarga->jml_anggota_keluarga)) ? strlen($jml_anggota_keluarga) : 0;
+        $errorCount += ($nama_sls !== strval($kuisioner->sls->name)) ? strlen($nama_sls) : 0;
+        $errorCount += ($landmark !== strval($kuisioner->keluarga->landmark)) ? strlen($landmark) : 0;
+        $errorCount += ($alamat !== $kuisioner->keluarga->alamat) ? strlen($alamat) : 0;
+        $errorCount += ($no_kk !== strval($kuisioner->keluarga->no_kk)) ? strlen($no_kk) : 0;
+        $errorCount += ($kode_kk !== strval($kuisioner->keluarga->kode_kk)) ? strlen($kode_kk) : 0;
+        $errorCount += ($pendataan_tgl !== strval(date("d", strtotime($kuisioner->tanggal_pendataan)))) ? strlen($pendataan_tgl) : 0;
+        $errorCount += ($pendataan_bln !== strval(date("m", strtotime($kuisioner->tanggal_pendataan)))) ? strlen($pendataan_bln) : 0;
+        $errorCount += ($pendataan_thn !== strval(date("Y", strtotime($kuisioner->tanggal_pendataan)))) ? strlen($pendataan_thn) : 0;
+        $errorCount += ($pemeriksaan_tgl !== strval(date("d", strtotime($kuisioner->tanggal_pemeriksaan)))) ? strlen($pemeriksaan_tgl) : 0;
+        $errorCount += ($pemeriksaan_bln !== strval(date("m", strtotime($kuisioner->tanggal_pemeriksaan)))) ? strlen($pemeriksaan_bln) : 0;
+        $errorCount += ($pemeriksaan_thn !== strval(date("Y", strtotime($kuisioner->tanggal_pemeriksaan)))) ? strlen($pemeriksaan_thn) : 0;
+        $errorCount += ($ppl_nama !== strval($kuisioner->ppl->name)) ? strlen($ppl_nama) : 0;
+        $errorCount += ($pml_nama !== strval($kuisioner->pml->name)) ? strlen($pml_nama) : 0;
+        $errorCount += ($kode_ppl !== strval($kuisioner->ppl->id)) ? strlen($kode_ppl) : 0;
+        $errorCount += ($kode_pml !== strval($kuisioner->pml->id)) ? strlen($kode_pml) : 0;
+        $errorCount += ($prosedur_pendataan !== '1') ? strlen($prosedur_pendataan) : 0;
+        $errorCount += ($prosedur_pemeriksaan !== '1') ? strlen($prosedur_pemeriksaan) : 0;
+        $errorCount += ($hasil_pendataan !== $kuisioner->status_pendataan) ? strlen($hasil_pendataan) : 0;
+        $errorCount += ($status_informasi !== '1') ? strlen($status_informasi) : 0;
+        $errorCount += ($no_hp !== strval($kuisioner->no_hp)) ? strlen($no_hp) : 0;
+
+
+
+        // Hitung total jumlah huruf
+        $totalCount = 0;
+        $totalCount += strlen($kuisioner->provinsi->id);
+        $totalCount += strlen($kuisioner->kabupaten->id);
+        $totalCount += strlen($kuisioner->kecamatan->id);
+        $totalCount += strlen($kuisioner->desa->id);
+        $totalCount += strlen($kuisioner->keluarga->nama_kepala_keluarga);
+        $totalCount += strlen($kuisioner->keluarga->no_urut_bangunan);
+        $totalCount += strlen($kuisioner->keluarga->no_urut_keluarga_verifikasi);
+        $totalCount += strlen($kuisioner->keluarga->status);
+        $totalCount += strlen($kuisioner->sls->id);
+        $totalCount += strlen($kuisioner->sls->sub_sls);
+        $totalCount += strlen($kuisioner->keluarga->jml_anggota_keluarga);
+        $totalCount += strlen($kuisioner->sls->name);
+        $totalCount += strlen($kuisioner->keluarga->landmark);
+        $totalCount += strlen($kuisioner->keluarga->alamat);
+        $totalCount += strlen($kuisioner->keluarga->no_kk);
+        $totalCount += strlen($kuisioner->keluarga->kode_kk);
+        $totalCount += strlen(date("d", strtotime($kuisioner->tanggal_pendataan)));
+        $totalCount += strlen(date("m", strtotime($kuisioner->tanggal_pendataan)));
+        $totalCount += strlen(date("Y", strtotime($kuisioner->tanggal_pendataan)));
+        $totalCount += strlen(date("d", strtotime($kuisioner->tanggal_pemeriksaan)));
+        $totalCount += strlen(date("m", strtotime($kuisioner->tanggal_pemeriksaan)));
+        $totalCount += strlen(date("Y", strtotime($kuisioner->tanggal_pemeriksaan)));
+        $totalCount += strlen($kuisioner->ppl->name);
+        $totalCount += strlen($kuisioner->pml->name);
+        $totalCount += strlen($kuisioner->ppl->id);
+        $totalCount += strlen($kuisioner->pml->id);
+        $totalCount += strlen($kuisioner->status_pendataan);
+        $totalCount += strlen($kuisioner->no_hp);
+
+
+        // Hitung persentase akurasi
+        $accuracy = 100 - ($errorCount * 100) / $totalCount;
+
+        if ($speed != null && $accuracy != null) {
+            Result::create([
+                'user_id' => Auth::user()->id,
+                'time' => $speed,
+                'score' => $accuracy,
+            ]);
+
+            return redirect()->route('homeUser')->with('score', $accuracy);
+        }
+
+        return redirect()->route('homeUser')->with('error', 'Gagal Save Data');
     }
 
     /**

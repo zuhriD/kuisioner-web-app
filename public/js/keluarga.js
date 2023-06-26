@@ -16,6 +16,7 @@ $('document').ready(function(){
                 $('#id_landmarkEdit').val(detail.landmark);
                 $('#no_kkEdit').val(detail.no_kk);
                 $('#kode_kkEdit').val(detail.kode_kk);
+                $('#alamatEdit').val(detail.alamat);
             }
         });
         var form  = document.querySelector('#editForm');
