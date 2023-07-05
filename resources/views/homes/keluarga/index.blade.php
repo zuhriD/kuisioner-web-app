@@ -211,7 +211,7 @@
               </div>
               <div class="form-group">
                 <label for="kode_kk">Kode KK</label>
-                <input type="number" class="form-control" id="kode_kkEdit" placeholder="Example: Jawa Tengah" name="kode_kk" required>
+                <input type="number" class="form-control" id="kode_kkEdit" placeholder="Example: 3500" name="kode_kk" required>
               </div>
             </div>
             <div class="col-md-12">
