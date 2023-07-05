@@ -83,7 +83,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="clientName">Kode PPL</label>
-                <input type="text" class="form-control" id="clientName" placeholder="Example: 35" name="kode_ppl" required>
+                <input type="number" class="form-control" id="clientName" placeholder="Example: 35" name="kode_ppl" required>
               </div>
               <div class="form-group">
                 <label for="pplTitle">Nama PPL</label>
@@ -117,7 +117,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="clientName">Kode PPL</label>
-              <input type="text" class="form-control" id="kodePPLEdit" placeholder="Example: 35" name="kode_ppl" required>
+              <input type="number" class="form-control" id="kodePPLEdit" placeholder="Example: 35" name="kode_ppl" required>
             </div>
             <div class="form-group">
               <label for="pplTitle">Nama PPL</label>

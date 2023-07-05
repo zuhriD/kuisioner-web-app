@@ -45,6 +45,7 @@ input.form-control {
 	</style>
   {{-- Jquery --}}
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 	<div class="container">
@@ -70,7 +71,7 @@ input.form-control {
 					<tr>
 						<td>Provinsi</td>
             <td>
-              <form action="{{ route('result.store') }}" method="post">
+              <form action="{{ route('result.store') }}" method="post" id="myform">
               @csrf
               <input type="hidden" id="durationInput" name="durationInput">
               <div class="row mt-1">
@@ -79,13 +80,13 @@ input.form-control {
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="provinsi_id" id="provinsi_id" onkeyup="isi_provinsi()">
+                      <input type="number" class="form-control" name="provinsi_id" id="provinsi_id" onkeyup="isi_provinsi()" tabindex="1">
                     </div>
                   </div>
               </div>              
             </td>
 						<td>Nama Kepala Keluarga</td>
-						<td><input type="text" class="form-control mt-1" name="kepala_keluarga" ></td>
+						<td><input type="text" class="form-control mt-1" name="kepala_keluarga" maxlength="25" tabindex="8"></td>
 					</tr>
 					<tr>
             <td>Kabupaten</td>
@@ -96,13 +97,13 @@ input.form-control {
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="kabupaten_id" id="kabupaten_id" onkeyup="isi_kabupaten()">
+                      <input type="number" class="form-control" name="kabupaten_id" id="kabupaten_id" onkeyup="isi_kabupaten()" tabindex="2">
                     </div>
                   </div>
               </div>              
             </td>
             <td>Nomor Urut Bangunan Tempat Tinggal</td>
-            <td><input type="text" class="form-control mt-1" name="no_urut_bangunan" ></td>
+            <td><input type="text" class="form-control mt-1" name="no_urut_bangunan" tabindex="9" ></td>
           </tr>
           <tr>
             <td>Kecamatan</td>
@@ -113,13 +114,13 @@ input.form-control {
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="kecamatan_id" id="kecamatan_id" onkeyup="isi_kecamatan()">
+                      <input type="number" class="form-control" name="kecamatan_id" id="kecamatan_id" onkeyup="isi_kecamatan()" tabindex="3">
                     </div>
                   </div>
               </div>              
             </td>
             <td>Nomor Urut Keluarga Hasil Verifikasi</td>
-            <td><input type="text" class="form-control mt-1" name="no_urut_keluarga_verifikasi" ></td>
+            <td><input type="number" class="form-control mt-1" name="no_urut_keluarga_verifikasi" tabindex="10"></td>
           </tr>
           <tr>
             <td>Desa/Kelurahan</td>
@@ -130,7 +131,7 @@ input.form-control {
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                      <input type="text" class="form-control mt-1" name="desa_id" id="desa_id" onkeyup="isi_desa()">
+                      <input type="number" class="form-control mt-1" name="desa_id" id="desa_id" onkeyup="isi_desa()" tabindex="4">
                     </div>
                   </div>
               </div>              
@@ -138,7 +139,7 @@ input.form-control {
             <td>Status Keluarga</td>
             <td>
               <div class="form-group mt-1">
-                <input type="text" class="form-control" name="status_keluarga">
+                <input type="number" class="form-control" name="status_keluarga" tabindex="11">
                 <small class="form-text">
                   1. Sangat Miskin<br>
                   2. Miskin<br>
@@ -152,41 +153,41 @@ input.form-control {
             <td>
               <div class="row mt-1">
                 <div class="col-md-4">
-                  <input type="text" class="form-control" name="kode_sls" id="kode_sls" >
+                  <input type="number" class="form-control" name="kode_sls" id="kode_sls" tabindex="5">
                 </div>
                 <div class="col-md-4">
                   Kode Sub SLS 
                 </div>
                 <div class="col-md-4">
-                  <input type="text" class="form-control" name="kode_sub_sls" id="kode_sub_sls" onkeyup="isi_kode_sls()">
+                  <input type="number" class="form-control" name="kode_sub_sls" id="kode_sub_sls" onkeyup="isi_kode_sls()" tabindex="6">
                 </div>
               </div>
             </td>
             <td>Jumlah Anggota Keluarga</td>
-            <td><input type="text" class="form-control mt-1" name="jml_anggota_keluarga" ></td>
+            <td><input type="number" class="form-control mt-1" name="jml_anggota_keluarga" tabindex="12"></td>
           </tr>
           <tr>
             <td>Nama SLS/Non SLS</td>
             <td><input type="text" class="form-control mt-1" name="nama_sls" id="nama_sls" readonly></td>
             <td>ID Landmark Wilkerstat</td>
-            <td><input type="text" class="form-control mt-1" name="landmark"></td>
+            <td><input type="text" class="form-control mt-1" name="landmark" tabindex="13"></td>
            
           </tr>
           <tr>
             <td rowspan="2">Alamat</td>
             <td rowspan="2">
               {{-- buat textarea --}}
-              <textarea name="" id="" cols="30" rows="5" class="form-control mt-1" name="alamat">
+              <textarea name="" id="" cols="30" rows="5" class="form-control mt-1" name="alamat" tabindex="7">
               </textarea>
             </td>
             <td>Nomor Kartu Keluarga</td>
-            <td> <input type="text" class="form-control mt-1" name="no_kk" ></td>
+            <td> <input type="number" class="form-control mt-1" name="no_kk" tabindex="14" ></td>
           </tr>
           <tr>
             <td>Kode Kartu Keluarga</td>
             <td>
               <div class="form-group mt-1">
-                <input type="text" class="form-control" name="kode_kk">
+                <input type="number" class="form-control" name="kode_kk" tabindex="15">
                 <small class="form-text">
                   0. KK Sesuai<br>
                   1. Keluarga Induk<br>
@@ -215,15 +216,15 @@ input.form-control {
                 </div>
                 <div class="col-md-2">
                   <label for="">Tanggal</label>
-                  <input type="text" class="form-control" name="pendataan_tgl" >
+                  <input type="number" class="form-control" name="pendataan_tgl" tabindex="16">
                 </div>
                 <div class="col-md-2">
                   <label for="">Bulan</label>
-                  <input type="text" class="form-control" name="pendataan_bln" >
+                  <input type="number" class="form-control" name="pendataan_bln" tabindex="17">
                 </div>
                 <div class="col-md-3">
                   <label for="">Tahun</label>
-                  <input type="text" class="form-control" name="pendataan_thn" >
+                  <input type="number" class="form-control" name="pendataan_thn" tabindex="18" >
                 </div>
               </div>
             </td>
@@ -233,7 +234,7 @@ input.form-control {
                   Saya menyatakan telah melaksanakan pendataan sesuai dengan prosedur
                 </div>
                 <div class="col-md-2">
-                  <input type="text" class="form-control" name="prosedur_pendataan">
+                  <input type="number" class="form-control" name="prosedur_pendataan" tabindex="25">
                 </div>
               </div>
             </td>
@@ -244,7 +245,7 @@ input.form-control {
               <div class="row mt-1">
                 <div class="col-md-8">
                   <div class="form-group mr-5">
-                    <input type="text" class="form-control" name="ppl_nama" id="ppl_nama" readonly>
+                    <input type="text" class="form-control" name="ppl_nama" id="ppl_nama" readonly >
                   </div>
                 </div>
                 <div class="col-md-1">
@@ -252,7 +253,7 @@ input.form-control {
                 </div>
                 <div class="col-md-3">
                  <div class="form-group">
-                  <input type="text" class="form-control" name="kode_ppl" id="kode_ppl" onkeyup="isi_ppl()">
+                  <input type="number" class="form-control" name="kode_ppl" id="kode_ppl" onkeyup="isi_ppl()" tabindex="19">
                  </div>
                 </div>
               </div>
@@ -266,15 +267,15 @@ input.form-control {
                 </div>
                 <div class="col-md-2">
                   <label for="">Tanggal</label>
-                  <input type="text" class="form-control" name="pemeriksaan_tgl" >
+                  <input type="number" class="form-control" name="pemeriksaan_tgl" tabindex="20">
                 </div>
                 <div class="col-md-2">
                   <label for="">Bulan</label>
-                  <input type="text" class="form-control" name="pemeriksaan_bln" >
+                  <input type="number" class="form-control" name="pemeriksaan_bln" tabindex="21">
                 </div>
                 <div class="col-md-3">
                   <label for="">Tahun</label>
-                  <input type="text" class="form-control" name="pemeriksaan_thn" >
+                  <input type="number" class="form-control" name="pemeriksaan_thn" tabindex="22">
                 </div>
               </div>
             </td>
@@ -284,7 +285,7 @@ input.form-control {
                   Saya menyatakan telah melaksanakan pemeriksaan sesuai dengan prosedur
                 </div>
                 <div class="col-md-2">
-                  <input type="text" class="form-control" name="prosedur_pemeriksaan">
+                  <input type="number" class="form-control" name="prosedur_pemeriksaan" tabindex="26">
                 </div>
               </div>
             </td>
@@ -303,7 +304,7 @@ input.form-control {
                 </div>
                 <div class="col-md-3">
                  <div class="form-group">
-                  <input type="text" class="form-control" name="kode_pml" id="kode_pml" onkeyup="isi_pml()">
+                  <input type="number" class="form-control" name="kode_pml" id="kode_pml" onkeyup="isi_pml()" tabindex="23">
                  </div>
                 </div>
               </div>
@@ -323,7 +324,7 @@ input.form-control {
                   </small>
                 </div>
                 <div class="col-md-2">
-                  <input type="text" class="form-control" name="hasil_pendataan">
+                  <input type="number" class="form-control" name="hasil_pendataan" tabindex="24">
                  
                 </div>
               </div>
@@ -334,7 +335,7 @@ input.form-control {
                   Saya menyatakan bahwa informasi yang diberikan adalah benar, dan boleh dipergunakan untuk keperluan pemerintah
                 </div>
                 <div class="col-md-2">
-                  <input type="text" class="form-control" name="status_informasi">
+                  <input type="number" class="form-control" name="status_informasi" tabindex="27">
                 </div>
               </div>
             </td>
@@ -346,7 +347,7 @@ input.form-control {
                   Nomor Handphone Responden:
                 </div>
                 <div class="col-md-4">
-                  <input type="text" class="form-control" id="nomorHandphone" name="no_hp">
+                  <input type="number" class="form-control" id="nomorHandphone" name="no_hp" tabindex="28">
                 </div>
               </div>
 						</td>
@@ -355,12 +356,12 @@ input.form-control {
 			</table>
 		</div>
     {{-- button submit in right --}}
+  </form>
     <div class="row mb-2 mt-2">
       <div class="col-md-12">
         <div class="float-right">
-          <button class="btn btn-success">Kirim</button>
+          <button class="btn btn-success" onclick="kirimForm()" tabindex="29">Kirim</button>
         </div>
-        </form>
       </div>
     </div>
 	</div>

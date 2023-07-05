@@ -117,3 +117,24 @@ updateDuration();
 window.onload = function() {
     document.getElementById('myForm').reset();
   };
+
+  function kirimForm() {
+    Swal.fire({
+      title: "Apakah Anda yakin?",
+      text: "Formulir akan dikirim!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Kirim",
+      cancelButtonText: "Batal",
+      dangerMode: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Lakukan tindakan pengiriman formulir di sini
+        // Contoh: document.getElementById("myForm").submit();
+        Swal.fire("Formulir terkirim!", "", "success");
+        document.getElementById("myform").submit();
+      } else {
+        Swal.fire("Pengiriman dibatalkan.", "", "info");
+      }
+    });
+  }

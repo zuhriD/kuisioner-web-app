@@ -85,7 +85,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="clientName">Kode User</label>
-                <input type="text" class="form-control" id="clientName" placeholder="Example: 35" name="kode_user" required>
+                <input type="number" class="form-control" id="clientName" placeholder="Example: 35" name="kode_user" required>
               </div>
               <div class="form-group">
                 <label for="userTitle">Nama User</label>
@@ -97,7 +97,7 @@
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="3 Nomor Belakang NIK" name="password" required>
+                <input type="password" class="form-control" id="password" placeholder="16 Digit NIK" name="password" maxlength="16" minlength="16"  required>
               </div>
             </div>
             <div class="col-md-12 text-right">
@@ -127,7 +127,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="clientName">Kode User</label>
-              <input type="text" class="form-control" id="kodeUserEdit" placeholder="Example: 35" name="kode_user" required>
+              <input type="number" class="form-control" id="kodeUserEdit" placeholder="Example: 35" name="kode_user" required>
             </div>
             <div class="form-group">
               <label for="userTitle">Nama User</label>
@@ -139,7 +139,7 @@
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" id="passwordEdit" placeholder="3 Nomor Belakang NIK" name="password" required>
+              <input type="password" class="form-control" id="passwordEdit" placeholder="16 Digit NIK" name="password" maxlength="16" minlength="16" required>
             </div>
           </div>
           <div class="col-md-12 text-right">

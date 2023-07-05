@@ -95,7 +95,7 @@
                </div>
               <div class="form-group">
                 <label for="clientName">Kode Kabupaten</label>
-                <input type="text" class="form-control" id="clientName" placeholder="Example: 35" name="kode_kabupaten" required>
+                <input type="number" class="form-control" id="clientName" placeholder="Example: 35" name="kode_kabupaten" required>
               </div>
               <div class="form-group">
                 <label for="kabupatenTitle">Nama Kabupaten</label>
@@ -138,7 +138,7 @@
                </div>
             <div class="form-group">
               <label for="clientName">Kode Kabupaten</label>
-              <input type="text" class="form-control" id="kodeKabupatenEdit" placeholder="Example: 35" name="kode_kabupaten" required>
+              <input type="number" class="form-control" id="kodeKabupatenEdit" placeholder="Example: 35" name="kode_kabupaten" required>
             </div>
             <div class="form-group">
               <label for="kabupatenTitle">Nama Kabupaten</label>

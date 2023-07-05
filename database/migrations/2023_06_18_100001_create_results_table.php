@@ -17,6 +17,8 @@ class CreateResultsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('restrict');
             $table->string('time');
+            $table->string('duration');
+            $table->string('mistakes');
             $table->string('score');
             $table->timestamps();
         });

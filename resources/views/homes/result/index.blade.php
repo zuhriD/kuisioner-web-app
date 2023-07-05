@@ -40,6 +40,8 @@
               <th>No Result</th>
               <th>Nama User</th>
               <th>Time</th>
+              <th>Duration</th>
+              <th>Mistakes</th>
               <th>Score</th>
               <th>Action</th>
             </tr>
@@ -50,6 +52,8 @@
              <td>{{$item->id}}</td>
              <td>{{$item->user->name}}</td>
              <td>{{$item->time}}</td>
+              <td>{{$item->duration}}</td>
+              <td>{{$item->mistakes}}</td>
              <td>{{$item->score}}</td>
               <td>
                 <form action="{{ route('result.destroy', $item->id) }}" method="POST" class="d-inline">

@@ -207,11 +207,11 @@
               </div>
               <div class="form-group">
                 <label for="no_kk">No KK</label>
-                <input type="text" class="form-control" id="no_kkEdit" placeholder="Example: 35" name="no_kk" required>
+                <input type="number" class="form-control" id="no_kkEdit" placeholder="Example: 35" name="no_kk" required>
               </div>
               <div class="form-group">
                 <label for="kode_kk">Kode KK</label>
-                <input type="text" class="form-control" id="kode_kkEdit" placeholder="Example: Jawa Tengah" name="kode_kk" required>
+                <input type="number" class="form-control" id="kode_kkEdit" placeholder="Example: Jawa Tengah" name="kode_kk" required>
               </div>
             </div>
             <div class="col-md-12">

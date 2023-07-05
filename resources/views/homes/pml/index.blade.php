@@ -83,7 +83,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="clientName">Kode PML</label>
-                <input type="text" class="form-control" id="clientName" placeholder="Example: 35" name="kode_pml" required>
+                <input type="number" class="form-control" id="clientName" placeholder="Example: 35" name="kode_pml" required>
               </div>
               <div class="form-group">
                 <label for="pmlTitle">Nama PML</label>
@@ -117,7 +117,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="clientName">Kode PML</label>
-              <input type="text" class="form-control" id="kodePMLEdit" placeholder="Example: 35" name="kode_pml" required>
+              <input type="number" class="form-control" id="kodePMLEdit" placeholder="Example: 35" name="kode_pml" required>
             </div>
             <div class="form-group">
               <label for="pmlTitle">Nama PML</label>

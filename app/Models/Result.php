@@ -11,6 +11,8 @@ class Result extends Model
     protected $fillable = [
         'user_id',
         'time',
+        'duration',
+        'mistakes',
         'score'];
 
     //make relationship with user

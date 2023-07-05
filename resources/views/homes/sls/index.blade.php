@@ -97,11 +97,11 @@
                </div>
               <div class="form-group">
                 <label for="clientName">Kode SLS</label>
-                <input type="text" class="form-control" id="clientName" placeholder="Example: 35" name="kode_sls" required>
+                <input type="number" class="form-control" id="clientName" placeholder="Example: 35" name="kode_sls" required>
               </div>
               <div class="form-group">
                 <label for="clientName">Kode Sub SLS</label>
-                <input type="text" class="form-control" id="clientName" placeholder="Example: 35" name="kode_sub_sls" required>
+                <input type="number" class="form-control" id="clientName" placeholder="Example: 35" name="kode_sub_sls" required>
               </div>
               <div class="form-group">
                 <label for="slsTitle">Nama SLS</label>
@@ -144,11 +144,11 @@
                </div>
             <div class="form-group">
               <label for="clientName">Kode SLS</label>
-              <input type="text" class="form-control" id="kodeSLSEdit" placeholder="Example: 35" name="kode_sls" required>
+              <input type="number" class="form-control" id="kodeSLSEdit" placeholder="Example: 35" name="kode_sls" required>
             </div>
             <div class="form-group">
                 <label for="clientName">Kode Sub SLS</label>
-                <input type="text" class="form-control" id="kodeSubEdit" placeholder="Example: 35" name="kode_sub_sls" required>
+                <input type="number" class="form-control" id="kodeSubEdit" placeholder="Example: 35" name="kode_sub_sls" required>
               </div>
             <div class="form-group">
               <label for="slsTitle">Nama SLS</label>

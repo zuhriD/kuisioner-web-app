@@ -185,6 +185,8 @@ class ResultController extends Controller
             Result::create([
                 'user_id' => Auth::user()->id,
                 'time' => $speed,
+                'duration' => $durationInSeconds,
+                'mistakes' => $errorCount,
                 'score' => $accuracy,
             ]);
 

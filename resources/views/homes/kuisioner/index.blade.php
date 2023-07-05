@@ -196,7 +196,7 @@
               </div>
               <div class="form-group">
                 <label for="clientName">No HP</label>
-                <input type="text" name="no_hp" id="no_hp" class="form-control" placeholder="No HP" required>
+                <input type="number" name="no_hp" id="no_hp" class="form-control" placeholder="No HP" required>
               </div>
             </div>
             <div class="col-md-12 text-right">
@@ -319,7 +319,7 @@
             </div>
             <div class="form-group">
               <label for="clientName">No HP</label>
-              <input type="text" name="no_hp" id="no_hpEdit" class="form-control" placeholder="No HP" required>
+              <input type="number" name="no_hp" id="no_hpEdit" class="form-control" placeholder="No HP" required>
             </div>
            
           </div>
