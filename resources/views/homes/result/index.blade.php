@@ -52,7 +52,7 @@
              <td>{{$item->id}}</td>
              <td>{{$item->user->name}}</td>
              <td>{{$item->time}}</td>
-              <td>{{$item->duration}}</td>
+              <td>{{$item->duration}} Detik</td>
               <td>{{$item->mistakes}}</td>
              <td>{{$item->score}}</td>
               <td>
