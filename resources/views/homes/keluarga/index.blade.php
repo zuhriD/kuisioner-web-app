@@ -105,7 +105,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="nama_kepala_keluarga">Nama Kepala Keluarga</label>
-                <input type="text" class="form-control" id="nama_kepala_keluarga" placeholder="Example: Yudi" name="nama_kepala_keluarga" required>
+                <input type="text" class="form-control" id="nama_kepala_keluarga" placeholder="Example: Yudi" name="nama_kepala_keluarga" maxlength="25" required>
               </div>
               <div class="form-group">
                 <label for="no_urut_bangunan">No Urut Bangunan</label>
