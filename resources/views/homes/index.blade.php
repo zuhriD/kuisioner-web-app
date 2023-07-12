@@ -95,9 +95,16 @@
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" placeholder="Example: Yudi" name="username" required>
               </div>
-              <div class="form-group">
+              <div class="form-group password-wrapper">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="16 Digit NIK" name="password" maxlength="16" minlength="16"  required>
+                <div class="input-group">
+                  <input type="password" class="form-control" id="password" placeholder="16 Digit NIK" name="password" maxlength="16" minlength="16" required>
+                  <div class="input-group-append">
+                    <span class="input-group-text password-toggle">
+                      <i class="fa fa-eye-slash"></i>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-md-12 text-right">
@@ -124,7 +131,7 @@
         <form action="" method="POST" class="row" id="editForm">
           @csrf
           @method('PUT')
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="form-group">
               <label for="clientName">Kode User</label>
               <input type="number" class="form-control" id="kodeUserEdit" placeholder="Example: 35" name="kode_user" required>
@@ -137,9 +144,16 @@
               <label for="username">Username</label>
               <input type="text" class="form-control" id="usernameEdit" placeholder="Example: Yudi" name="username" required>
             </div>
-            <div class="form-group">
+            <div class="form-group password-wrapper">
               <label for="password">Password</label>
-              <input type="password" class="form-control" id="passwordEdit" placeholder="16 Digit NIK" name="password" maxlength="16" minlength="16" required>
+              <div class="input-group">
+                <input type="password" class="form-control" id="passwordEdit" placeholder="16 Digit NIK" name="password" maxlength="16" minlength="16" required>
+                <div class="input-group-append">
+                  <span class="input-group-text password-toggle edit">
+                    <i class="fa fa-eye-slash"></i>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-md-12 text-right">

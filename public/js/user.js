@@ -22,3 +22,34 @@ $('document').ready(function(){
 
     }); 
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const passwordField = document.getElementById('password');
+    const toggleButton = document.querySelector('.password-toggle');
+
+    toggleButton.addEventListener('click', function() {
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        toggleButton.innerHTML = '<i class="fa fa-eye"></i>';
+      } else {
+        passwordField.type = 'password';
+        toggleButton.innerHTML = '<i class="fa fa-eye-slash"></i>';
+      }
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const passwordField = document.getElementById('passwordEdit');
+    const toggleButton = document.querySelector('.edit');
+
+    toggleButton.addEventListener('click', function() {
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        toggleButton.innerHTML = '<i class="fa fa-eye"></i>';
+      } else {
+        passwordField.type = 'password';
+        toggleButton.innerHTML = '<i class="fa fa-eye-slash"></i>';
+      }
+    });
+  });

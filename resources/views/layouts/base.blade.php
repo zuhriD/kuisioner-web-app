@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
   
   {{-- Jquery --}}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{{ asset('js/code.jquery.com_jquery-3.6.0.min.js') }}"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
